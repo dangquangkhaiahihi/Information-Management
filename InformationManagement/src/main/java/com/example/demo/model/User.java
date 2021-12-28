@@ -13,14 +13,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Getter
+@Setter
+@ToString
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "name", columnDefinition = "NVARCHAR(50)", nullable = false)
+	@NotBlank(message = "Name should not be null or empty or blank")
+	//check for both null as well as empty value
 	private String name;
 	
 	@Column(name = "socialsercuritynumber", unique = true, columnDefinition = "CHAR(12)", nullable = false)

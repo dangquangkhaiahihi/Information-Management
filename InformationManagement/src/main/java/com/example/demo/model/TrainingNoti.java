@@ -11,7 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter
+@Setter
+@ToString
 public class TrainingNoti {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

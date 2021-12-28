@@ -14,7 +14,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter
+@Setter
+@ToString
 public class BusinessPremises {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
