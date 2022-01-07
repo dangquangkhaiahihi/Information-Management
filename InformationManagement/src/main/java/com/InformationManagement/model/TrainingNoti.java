@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.InformationManagement.model;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -19,10 +19,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Noti {
+public class TrainingNoti {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id;	
 
 	@Column(name = "title", columnDefinition = "NVARCHAR(255)")
 	private String title;
@@ -30,11 +30,10 @@ public class Noti {
 	@Column(name = "content", columnDefinition = "NVARCHAR(255)", nullable = false)
 	private String content;
 
-	@Column(name = "createddate", columnDefinition = "DATETIME", nullable = false)
+	@Column(name = "createddate",columnDefinition = "DATETIME", nullable = false)
 	private Timestamp createddate;
 
 	// not a column in table
-	@ManyToMany(mappedBy = "notis", fetch = FetchType.LAZY)
-	private List<Person> people;
-
+	@ManyToMany(mappedBy = "trainingNotis", fetch = FetchType.LAZY)
+	private List<User> users;
 }

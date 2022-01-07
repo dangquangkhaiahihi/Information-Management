@@ -1,5 +1,6 @@
-package com.example.demo.model;
+package com.InformationManagement.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,16 +19,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class LicenseType {
+public class Noti {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "type", columnDefinition = "NVARCHAR(100)", unique = true, nullable = false)
-	private String name;
+	@Column(name = "title", columnDefinition = "NVARCHAR(255)")
+	private String title;
+
+	@Column(name = "content", columnDefinition = "NVARCHAR(255)", nullable = false)
+	private String content;
+
+	@Column(name = "createddate", columnDefinition = "DATETIME", nullable = false)
+	private Timestamp createddate;
 
 	// not a column in table
+	@ManyToMany(mappedBy = "notis", fetch = FetchType.LAZY)
+	private List<Person> people;
 
-	@ManyToMany(mappedBy = "licenseTypes", fetch = FetchType.LAZY)
-	private List<Provider> providers;
 }

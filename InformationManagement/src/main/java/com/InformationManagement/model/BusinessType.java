@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.InformationManagement.model;
 
 import java.util.List;
 
@@ -19,15 +19,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Role {
+public class BusinessType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "role", columnDefinition = "CHAR(10)", unique = true, nullable = false)
-	private String role;
+	@Column(name = "type", columnDefinition = "NVARCHAR(100)", unique = true, nullable = false)
+	private String type;
 
 	// not a column in table
-	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<User> users;
+	@OneToMany(mappedBy = "bussinessType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<BusinessPremises> businessPremises;
 }

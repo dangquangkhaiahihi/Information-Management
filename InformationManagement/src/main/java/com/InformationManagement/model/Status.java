@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.InformationManagement.model;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
@@ -20,18 +19,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Area {
+public class Status {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "area", columnDefinition = "NVARCHAR(100)",unique = true, nullable = false)
-	private String area;
+	@Column(name = "status", columnDefinition = "CHAR(10)", unique = true, nullable = false)
+	private String status;
 
 	// not a column in table
-	@ManyToMany(mappedBy = "areas", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "status", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> users;
-
-	@OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<BusinessPremises> businessPremises;
 }

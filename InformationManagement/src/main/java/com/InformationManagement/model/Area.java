@@ -1,8 +1,8 @@
-package com.example.demo.model;
+package com.InformationManagement.model;
 
-import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,21 +20,18 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class TrainingNoti {
+public class Area {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	
+	private Long id;
 
-	@Column(name = "title", columnDefinition = "NVARCHAR(255)")
-	private String title;
-
-	@Column(name = "content", columnDefinition = "NVARCHAR(255)", nullable = false)
-	private String content;
-
-	@Column(name = "createddate",columnDefinition = "DATETIME", nullable = false)
-	private Timestamp createddate;
+	@Column(name = "area", columnDefinition = "NVARCHAR(100)",unique = true, nullable = false)
+	private String area;
 
 	// not a column in table
-	@ManyToMany(mappedBy = "trainingNotis", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "areas", fetch = FetchType.LAZY)
 	private List<User> users;
+
+	@OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<BusinessPremises> businessPremises;
 }
